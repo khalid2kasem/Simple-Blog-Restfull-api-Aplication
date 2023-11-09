@@ -1,67 +1,68 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Simple Blog Restful API Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Welcome to the Simple Blog Restful API Application. This application is designed to provide a platform where users can perform CRUD (Create, Read, Update, Delete) operations on blog posts. It's built with Laravel and uses Sanctum for token-based authentication.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### CRUD Operations
+Users can create, read, update, and delete blog posts. This provides a dynamic and interactive blogging experience.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
+### Authentication
+The application uses Laravel Sanctum, a lightweight authentication system for single-page applications, mobile applications, and simple, token-based APIs. It provides a simple way of authenticating users via tokens.
 
- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Validation
+To ensure the quality of the content, we have implemented validation for the post title and content. This helps maintain a high standard of posts on our platform.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Feature Tests
+We have written feature tests for the API endpoints. This ensures that our application works as expected and helps us identify any issues or bugs that may arise.
 
-## Learning Laravel
+### Postman Collection
+We have created a Postman collection that you can use to test the login, register, and CRUD operations. This makes it easy to test the functionality of our application.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Database Credentials
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Here are the database credentials for the application:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- DB_CONNECTION: mysql
+- DB_HOST: mysql
+- DB_PORT: 3306
+- DB_DATABASE: laravel_task
+- DB_USERNAME: sail
+- DB_PASSWORD: password
 
-## Laravel Sponsors
+## Setup
+To install this project, you need to have PHP, Composer, and MySQL installed on your system. You can also use Laravel Sail to run the project in a Docker container.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Follow these steps to set up the application:
 
-### Premium Partners
+1. Clone the repository: `git clone https://github.com/khalid2kasem/Simple-Blog-Restfull-api-Aplication.git`
+2. Navigate to the project directory: `cd Simple-Blog-Restfull-api-Aplication`
+3. Install dependencies: `composer install`
+4. Generate an application key using php artisan: `key:generate`
+5. Set up your database credentials in the .env file.
+- DB_CONNECTION: mysql
+- DB_HOST: mysql
+- DB_PORT: 3306
+- DB_DATABASE: laravel_task
+- DB_USERNAME: sail
+- DB_PASSWORD: password
+4. Run migrations: `php artisan migrate`
+5. Seed the database: `php artisan db:seed` or `php artisan migrate:fresh --seed` to make both command at once.
+6. Start the server: `php artisan serve` or `sail up -d`
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Testing
 
-## Contributing
+To run the feature tests, use the command: `php artisan test`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Usage
+You can use Postman or any other API client to test the API endpoints. You can also import the Postman collection provided.
 
-## Code of Conduct
+The available endpoints are:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+POST /api/register: Register a new user with name, email, and password.
+POST /api/login: Login an existing user with email and password. Returns a token and a user object.
+GET /api/posts: Get all the posts. Returns json for all posts.
+GET /api/posts/{id}: Get a single post by id. Returns a post object.
+POST /api/posts: Create a new post with title and content. Requires authentication. Returns a post object.
+PUT /api/posts/{id}: Update an existing post by id with title and content. Returns a post object.
+DELETE /api/posts/{id}: Delete an existing post by id.
